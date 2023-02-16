@@ -1,7 +1,7 @@
 import { Client, auth } from "cassandra-driver";
 import { config } from "./config.js";
 
-const { DB } = config;
+const { DATACENTER, HOST, PORT, USERNAME, PASSWORD } = config.DB;
 
 async function run() {
   // const client = new Client({
@@ -15,9 +15,9 @@ async function run() {
   // });
 
   const client = new Client({
-    localDataCenter: "datacenter1",
-    contactPoints: ["127.0.0.1:9042"],
-    authProvider: new auth.PlainTextAuthProvider("cassandra", "cassandra"),
+    localDataCenter: DATACENTER,
+    contactPoints: [`${HOST}:${PORT}`],
+    authProvider: new auth.PlainTextAuthProvider(USERNAME, PASSWORD),
   });
 
   await client.connect();
