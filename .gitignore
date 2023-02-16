@@ -1,0 +1,11 @@
+# FOLDERS
+/node_modules
+
+# ENV
+.env
+
+# Credentials json
+/cassandra-schema-parser-token.json
+
+# Archive for remote datasax astra cluster connection
+/secure-connect-cassandra-schema-parser.zip
