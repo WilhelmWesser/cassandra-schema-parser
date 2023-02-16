@@ -1,5 +1,6 @@
 import { Client, auth } from "cassandra-driver";
 import { config } from "./config.js";
+import { logger } from "./services/services.js";
 
 const { DATACENTER, HOST, PORT, USERNAME, PASSWORD } = config.DB;
 
@@ -23,7 +24,7 @@ async function run() {
   await client.connect();
 
   const rs = await client.execute("SELECT * FROM system.local");
-  console.log(`Your cluster returned ${rs.rowLength} row(s)`);
+  logger.showInLog(`Your cluster returned ${rs.rowLength} row(s)`);
 
   await client.shutdown();
 }
