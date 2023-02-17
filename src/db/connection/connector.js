@@ -22,8 +22,8 @@ class Connector {
 
     try {
       await client.connect();
-      logger.showInLog("Connected to DB");
       this.#client = client;
+      logger.showInLog("Connected to DB");
     } catch (e) {
       logger.showInErrors(`Error ${e} raised while connecting to DB`);
     }

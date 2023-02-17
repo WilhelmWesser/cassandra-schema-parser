@@ -3,7 +3,7 @@ import { Connector } from "./db/connection/connector.js";
 import { CassandraRepository } from "./db/repositories/repositories.js";
 import { KEYSPACE_NAME } from "./common/constants/constants.js";
 
-async function bootstrap() {
+const bootstrap = async () => {
   const connector = new Connector();
   await connector.connect();
 
@@ -12,9 +12,9 @@ async function bootstrap() {
 
   const schema = await cassandraRepo.extractSchema(KEYSPACE_NAME);
 
-  logger.showInLog(schema);
+  logger.showInLog(schema.tables);
 
-  await client.shutdown();
-}
+  await connector.disconnect();
+};
 
 bootstrap();

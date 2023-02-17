@@ -27,7 +27,7 @@ class Seeds {
   async #seedKeyspace() {
     await this.#client
       .execute(`CREATE KEYSPACE IF NOT EXISTS ${KEYSPACE_NAME} WITH REPLICATION = {
-        'class': 'SimpleStrategy', 'replication_factor': 2
+        'class': 'SimpleStrategy', 'replication_factor': 1
     };`);
   }
 

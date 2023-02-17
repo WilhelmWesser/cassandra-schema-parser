@@ -16,7 +16,7 @@ class CassandraRepository {
     const userDefinedTypes = await this.#extractUserDefinedTypes(keyspaceName);
 
     const tablesToReturn = [];
-    tables.forEach(async (tableName) => {
+    for (const tableName of tables) {
       const tableColumns = await this.#extractColumns(keyspaceName, tableName);
       const firstRow = await this.#readFirstRow(keyspaceName, tableName);
 
@@ -25,7 +25,7 @@ class CassandraRepository {
         columns: tableColumns,
         firstRow,
       });
-    });
+    }
 
     const userDefinedTypesToReturn = [];
     userDefinedTypes.forEach(async (userDefinedType) => {
@@ -58,7 +58,7 @@ class CassandraRepository {
 
   async #extractColumns(keyspaceName, tableName) {
     const res = await this.#executeQuery(
-      `SELECT column_name, type FROM ${SYSTEM_SCHEMA}.${SCHEMA_STORAGED_PROPERTIES.COLUMNS} WHERE keyspace_name = '${keyspaceName}' AND table_name = '${tableName}'`
+      `SELECT column_name, type FROM ${SYSTEM_SCHEMA}.${SCHEMA_STORAGED_PROPERTIES.COLUMNS} WHERE keyspace_name = '${keyspaceName}' AND table_name = '${tableName}';`
     );
 
     const columnsToExrtact = ["column_name", "type", "kind"];
@@ -72,7 +72,6 @@ class CassandraRepository {
   }
 
   async #readFirstRow(keyspaceName, tableName) {
-    console.log(keyspaceName, tableName);
     const res = await this.#executeQuery(
       `SELECT * FROM ${keyspaceName}.${tableName};`
     );
@@ -82,14 +81,14 @@ class CassandraRepository {
 
   async #extractUserDefinedTypes(keyspaceName) {
     const res = await this.#executeQuery(
-      `SELECT * FROM ${SYSTEM_SCHEMA}.${SCHEMA_STORAGED_PROPERTIES.TYPES} WHERE keyspace_name = '${keyspaceName}'`
+      `SELECT * FROM ${SYSTEM_SCHEMA}.${SCHEMA_STORAGED_PROPERTIES.TYPES} WHERE keyspace_name = '${keyspaceName}';`
     );
 
     return res.rows;
   }
 
-  #executeQuery(query) {
-    return this.#client.execute(query);
+  async #executeQuery(query) {
+    return await this.#client.execute(query);
   }
 }
 
