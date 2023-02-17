@@ -5,7 +5,8 @@
   "description": "A script for parsing Cassandra db schema to JSON",
   "main": "index.js",
   "scripts": {
-    "start": "node src/index.js"
+    "start": "node src/index.js",
+    "seed": "node src/db/seeds/seeder.js"
   },
   "repository": {
     "type": "git",

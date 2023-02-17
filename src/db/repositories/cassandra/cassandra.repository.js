@@ -72,6 +72,7 @@ class CassandraRepository {
   }
 
   async #readFirstRow(keyspaceName, tableName) {
+    console.log(keyspaceName, tableName);
     const res = await this.#executeQuery(
       `SELECT * FROM ${keyspaceName}.${tableName};`
     );

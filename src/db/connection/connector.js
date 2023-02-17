@@ -1,5 +1,5 @@
 import { Client } from "cassandra-driver";
-import { CONNECTION_MODES } from "../../common/constants/constants.js";
+import { CONNECTION_MODES } from "../../common/enums/enums.js";
 import { config } from "../../config.js";
 import { logger } from "../../services/services.js";
 
