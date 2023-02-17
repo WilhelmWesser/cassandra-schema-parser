@@ -1,1 +1,1 @@
-export { CONNECTION_MODES } from "./connection-mode.constant";
+export { CONNECTION_MODES } from "./connection-mode.constant.js";

@@ -1,32 +1,22 @@
-import { Client, auth } from "cassandra-driver";
-import { config } from "./config.js";
 import { logger } from "./services/services.js";
-
-const { DATACENTER, HOST, PORT, USERNAME, PASSWORD } = config.DB;
+import { Connector } from "./db/connection/connector.js";
+import { CassandraRepository } from "./db/repositories/repositories.js";
 
 async function run() {
-  // const client = new Client({
-  //   cloud: {
-  //     secureConnectBundle: DB.BUNDLE_PATH,
-  //   },
-  //   credentials: {
-  //     username: DB.CLIENT_ID,
-  //     password: DB.CLIENT_SECRET,
-  //   },
-  // });
+  const connector = new Connector();
+  await connector.connect();
 
-  const client = new Client({
-    localDataCenter: DATACENTER,
-    contactPoints: [`${HOST}:${PORT}`],
-    authProvider: new auth.PlainTextAuthProvider(USERNAME, PASSWORD),
-  });
+  const client = connector.getClient;
+  const cassandraRepo = new CassandraRepository(client);
 
-  await client.connect();
+  const schema = await cassandraRepo.extractSchema("csp");
+
+  logger.showInLog(schema);
 
   const rs = await client.execute("SELECT * FROM system.local");
   logger.showInLog(`Your cluster returned ${rs.rowLength} row(s)`);
 
-  await client.shutdown();
+  await connector.disconnect();
 }
 
 run();

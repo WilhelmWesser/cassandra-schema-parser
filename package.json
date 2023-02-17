@@ -5,7 +5,7 @@
   "description": "A script for parsing Cassandra db schema to JSON",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/index.js"
   },
   "repository": {
     "type": "git",

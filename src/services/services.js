@@ -1,4 +1,4 @@
-import { LoggerService } from "./logger/logger";
+import { LoggerService } from "./logger/logger.service.js";
 
 const logger = new LoggerService();
 
