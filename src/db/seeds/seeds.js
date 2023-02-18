@@ -6,8 +6,8 @@ import {
   USERS_TABLE_FIELDS,
   OTHER_POSSIBLE_TYPES_TEST_TABLE_NAME,
   OTHER_POSSIBLE_TYPES_TEST_TABLE_FIELDS,
-  CassandraTypes,
 } from "../../common/constants/constants.js";
+import { CassandraTypes } from "../../common/enums/enums.js";
 
 class Seeds {
   #client;

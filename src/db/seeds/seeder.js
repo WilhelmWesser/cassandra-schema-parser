@@ -11,7 +11,7 @@ const executeSeeding = async () => {
 
     const seed = new Seeds(client);
     await seed.seed();
-    logger.showInLog("Data has been inserted successfully");
+    logger.showInLog("Data has been seeded successfully");
   } catch (err) {
     logger.showInErrors(`While seeding following error occured: ${err}`);
   } finally {

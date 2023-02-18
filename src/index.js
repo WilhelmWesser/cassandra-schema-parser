@@ -1,4 +1,3 @@
-import { logger } from "./services/services.js";
 import { Connector } from "./db/connection/connector.js";
 import { CassandraRepository } from "./db/repositories/repositories.js";
 import { KEYSPACE_NAME } from "./common/constants/constants.js";
@@ -19,7 +18,6 @@ const bootstrap = async () => {
   );
   const json = dbToJsonSchemaTransformer.convert();
 
-  logger.showInLog(json);
   await writeSerializedSchema(json);
 
   await connector.disconnect();
