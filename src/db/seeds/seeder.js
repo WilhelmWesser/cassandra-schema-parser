@@ -14,8 +14,9 @@ const executeSeeding = async () => {
     logger.showInLog("Data has been inserted successfully");
   } catch (err) {
     logger.showInErrors(`While seeding following error occured: ${err}`);
+  } finally {
+    await connector.disconnect();
   }
-  await connector.disconnect();
 };
 
 executeSeeding();

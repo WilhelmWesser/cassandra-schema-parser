@@ -2,6 +2,8 @@ import { logger } from "./services/services.js";
 import { Connector } from "./db/connection/connector.js";
 import { CassandraRepository } from "./db/repositories/repositories.js";
 import { KEYSPACE_NAME } from "./common/constants/constants.js";
+import { CassandraSchemaConverterToJsonService } from "./services/converters/cassandra-schema-converter-to-json/cassandra-schema-converter-to-json.service.js";
+import { writeSerializedSchema } from "./helpers/json-writer/json-writer.helper.js";
 
 const bootstrap = async () => {
   const connector = new Connector();
@@ -12,7 +14,13 @@ const bootstrap = async () => {
 
   const schema = await cassandraRepo.extractSchema(KEYSPACE_NAME);
 
-  logger.showInLog(schema.tables);
+  const dbToJsonSchemaTransformer = new CassandraSchemaConverterToJsonService(
+    schema
+  );
+  const json = dbToJsonSchemaTransformer.convert();
+
+  logger.showInLog(json);
+  await writeSerializedSchema(json);
 
   await connector.disconnect();
 };

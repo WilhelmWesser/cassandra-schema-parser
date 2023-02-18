@@ -1,4 +1,4 @@
-export { JSON_SCHEMA_VERSION } from "./json/json-schems-version.js";
+export { JSON_SCHEMA_VERSION, RESULT_JSON_FILE_NAME } from "./json/json.js";
 export {
   SYSTEM_SCHEMA,
   SCHEMA_STORAGED_PROPERTIES,
@@ -13,4 +13,3 @@ export {
   OTHER_POSSIBLE_TYPES_TEST_TABLE_NAME,
   OTHER_POSSIBLE_TYPES_TEST_TABLE_FIELDS,
 } from "./seeds/seeds.js";
-export { CASSANDRA_TYPES } from "./types/types.js";

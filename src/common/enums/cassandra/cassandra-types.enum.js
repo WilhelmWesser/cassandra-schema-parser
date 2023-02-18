@@ -1,4 +1,4 @@
-const CASSANDRA_TYPES = Object.freeze({
+const CassandraTypes = Object.freeze({
   ASCII: "ascii",
   BIGINT: "bigint",
   BOOLEAN: "boolean",
@@ -24,4 +24,4 @@ const CASSANDRA_TYPES = Object.freeze({
   TUPLE: "tuple",
 });
 
-export { CASSANDRA_TYPES };
+export { CassandraTypes };

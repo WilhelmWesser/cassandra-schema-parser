@@ -1,5 +1,5 @@
 import { Client } from "cassandra-driver";
-import { CONNECTION_MODES } from "../../common/enums/enums.js";
+import { ConnectionModes } from "../../common/enums/enums.js";
 import { config } from "../../config.js";
 import { logger } from "../../services/services.js";
 
@@ -14,7 +14,7 @@ class Connector {
 
   async connect() {
     const isConnectionRemote =
-      DB.CONNECTION_MODE === CONNECTION_MODES.REMOTE_CLUSTER;
+      DB.CONNECTION_MODE === ConnectionModes.REMOTE_CLUSTER;
 
     const client = isConnectionRemote
       ? this.#remoteConnection()

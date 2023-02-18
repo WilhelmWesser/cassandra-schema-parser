@@ -4,8 +4,11 @@
 # ENV
 .env
 
-# Credentials json
+# Credentials json taken from DataStax Astra
 /cassandra-schema-parser-token.json
 
-# Archive for remote datasax astra cluster connection
+# Archive for remote DatasStax Astra cluster connection
 /secure-connect-cassandra-schema-parser.zip
+
+# Result JSON schema
+/result.json

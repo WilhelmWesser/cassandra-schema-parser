@@ -1,1 +1,1 @@
-export { CONNECTION_MODES } from "./connection-mode.constant.js";
+export { ConnectionModes } from "./connection-mode.enum.js";
