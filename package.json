@@ -2,13 +2,18 @@
   "name": "cassandra-schema-parser",
   "type": "module",
   "version": "1.0.0",
-  "description": "A script to parsing Cassandra db schema to JSON",
+  "description": "A script for parsing Cassandra db schema to JSON",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/index.js",
+    "seed": "node src/db/seeds/seeder.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WilhelmWesser/cassandra-schema-parser"
   },
   "keywords": [],
-  "author": "",
+  "author": "Nazar Kovtun",
   "license": "ISC",
   "dependencies": {
     "cassandra-driver": "4.6.4",
